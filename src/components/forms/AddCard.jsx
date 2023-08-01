@@ -80,7 +80,7 @@ const AddCard = ({ setOpenModal }) => {
 
   const validationSchema = yup.object({
     card_number: yup
-      .number()
+      .string()
       .matches(/^[\d]+$/, 'Card Number must contain numbers only')
       .max(19, 'Card Number cant be more then 19 digits')
       .min(16)
