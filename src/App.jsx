@@ -9,7 +9,7 @@ import { CountryProvider } from "./context/CountryContext";
 import { CardDataProvider } from "./context/CardDataContext";
 import "./styles/App.css"
 import { AnimatePresence } from "framer-motion";
-
+import  NotFound  from "./pages/NotFound";
 
 
 function App() {
@@ -23,6 +23,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Cards/>}/>
         <Route path="/countries" element={<Countries/>}/>
+        <Route path="*" element={<NotFound/>}/>
       </Routes>
     </Router>
     </AnimatePresence>

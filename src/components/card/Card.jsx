@@ -207,11 +207,7 @@ color:#f1e5a6;
 text-transform: uppercase;
 `
 
-const ShowDetails = styled.p`
-font-size: 16px;
-color:black;
-cursor: pointer;
-`
+
 
 
 const Card = ({ delay, data, flip }) => {

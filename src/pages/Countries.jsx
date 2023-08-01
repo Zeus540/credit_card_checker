@@ -2,7 +2,7 @@ import React, { useContext, useState, useEffect } from 'react'
 import styled from 'styled-components'
 import { CountryContext } from '../context/CountryContext'
 
-import { Root, StyledButton } from '../styles/global_styles';
+import { Root, StyledButton,Heading} from '../styles/global_styles';
 
 const ButtonHolder = styled.div`
 display:flex;
@@ -104,6 +104,7 @@ const Countries = () => {
 
             </ButtonHolder>
             <SearchInput type="text" onChange={(e)=>{handleSearch(e)}} placeholder='Search Country'></SearchInput>
+            <Heading>Countries</Heading>
             <CountryHolderOutter>
                 {paginateArray(countries.filter((c) => (c.name).toLowerCase().includes((searchTerm).toLowerCase())), pageSize, pageNumber).map((c) => {
 
