@@ -173,9 +173,11 @@ const AddCard = ({ setOpenModal }) => {
   }
 
 
-  function handleChange() {
-  
-  }
+  const handleChangeCustom = (setFieldValue,field,e,limitChar) => {
+    if (e.target.value.toString().length <= limitChar) {
+      setFieldValue(field,e.target.value);
+    }
+  };
 
   return (
     <div>
@@ -189,7 +191,7 @@ const AddCard = ({ setOpenModal }) => {
           }, 400);
         }}
       >
-        {({ isSubmitting, handleBlur, handleChange, values, touched, errors, }) => (
+        {({ isSubmitting, handleBlur, handleChange, values, touched, errors,setFieldValue }) => (
           <StyledFormOutter>
             <StyledFormCardHolder>  <Card data={values} flip={flip} /></StyledFormCardHolder>
 
@@ -203,8 +205,8 @@ const AddCard = ({ setOpenModal }) => {
                   type='number'
                   placeholder="4148XXXXXXXX4886"
                   value={values.card_number}
-                  maxLength="3"
-                  onChange={handleChange}
+                  inputProps={{ maxLength: 12 }}
+                  onChange={(e) => handleChangeCustom(setFieldValue,"card_number",e,16)}
                   onBlur={handleBlur}
                   error={touched.card_number && Boolean(errors.card_number)}
                   helperText={touched.card_number && errors.card_number}
@@ -219,7 +221,7 @@ const AddCard = ({ setOpenModal }) => {
                     placeholder="CVV"
                     maxLength="3"
                     value={values.cvv}
-                    onChange={handleChange}
+                    onChange={(e) => handleChangeCustom(setFieldValue,"cvv",e,3)}
                     onBlur={handleBlur}
                     error={touched.cvv && Boolean(errors.cvv)}
                     helperText={touched.cvv && errors.cvv}
@@ -231,7 +233,7 @@ const AddCard = ({ setOpenModal }) => {
                     type='number'
                     placeholder="1"
                     value={values.expiry_month}
-                    onChange={handleChange}
+                    onChange={(e) => handleChangeCustom(setFieldValue,"expiry_month",e,2)}
                     onBlur={handleBlur}
                     error={touched.expiry_month && Boolean(errors.expiry_month)}
                     helperText={touched.expiry_month && errors.expiry_month}
@@ -241,8 +243,9 @@ const AddCard = ({ setOpenModal }) => {
                     id="expiry_year"
                     name="expiry_year"
                     type='number'
+                    value={values.expiry_year}
                     placeholder={`${year.getFullYear() % 100}`}
-                    onChange={handleChange}
+                    onChange={(e) => handleChangeCustom(setFieldValue,"expiry_year",e,2)}
                     onBlur={handleBlur}
                     error={touched.expiry_year && Boolean(errors.expiry_year)}
                     helperText={touched.expiry_year && errors.expiry_year}
