@@ -205,7 +205,6 @@ const AddCard = ({ setOpenModal }) => {
                   type='number'
                   placeholder="4148XXXXXXXX4886"
                   value={values.card_number}
-                  inputProps={{ maxLength: 12 }}
                   onChange={(e) => handleChangeCustom(setFieldValue,"card_number",e,16)}
                   onBlur={handleBlur}
                   error={touched.card_number && Boolean(errors.card_number)}
