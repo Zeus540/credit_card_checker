@@ -82,8 +82,8 @@ const AddCard = ({ setOpenModal }) => {
     card_number: yup
       .string()
       .matches(/^[\d]+$/, 'Card Number must contain numbers only')
-      .max(19, 'Card Number cant be more then 19 digits')
-      .min(16)
+      .max(16, 'Card Number cant be more then 16 digits')
+      .min(16, 'Card Number cant be less then 16 digits')
       .required('Card Number is required'),
     cvv: yup
       .string('Enter cvv number')
@@ -103,9 +103,9 @@ const AddCard = ({ setOpenModal }) => {
       .required('required'),
     expiry_year: yup
       .number()
-      .min(year.getFullYear() % 100, 'Expiry year must be between 23 to 29')
-      .max((year.getFullYear() % 100) + 6, 'Expiry year must be between 23 to 29')
-      .positive('Expiry year must be between 23 to 29')
+      .min(year.getFullYear() % 100, 'Expiry year must be between 23 to 30')
+      .max((year.getFullYear() % 100) + 7, 'Expiry year must be between 23 to 30')
+      .positive('Expiry year must be between 23 to 30')
       .integer('Expiry year must be an integer')
       .required('required'),
     acc_holder: yup
@@ -172,6 +172,11 @@ const AddCard = ({ setOpenModal }) => {
 
   }
 
+
+  function handleChange() {
+  
+  }
+
   return (
     <div>
       <Formik
@@ -198,6 +203,7 @@ const AddCard = ({ setOpenModal }) => {
                   type='number'
                   placeholder="4148XXXXXXXX4886"
                   value={values.card_number}
+                  maxLength="3"
                   onChange={handleChange}
                   onBlur={handleBlur}
                   error={touched.card_number && Boolean(errors.card_number)}
@@ -211,6 +217,8 @@ const AddCard = ({ setOpenModal }) => {
                     name="cvv"
                     type='number'
                     placeholder="CVV"
+                    maxLength="3"
+                    value={values.cvv}
                     onChange={handleChange}
                     onBlur={handleBlur}
                     error={touched.cvv && Boolean(errors.cvv)}
@@ -222,6 +230,7 @@ const AddCard = ({ setOpenModal }) => {
                     name="expiry_month"
                     type='number'
                     placeholder="1"
+                    value={values.expiry_month}
                     onChange={handleChange}
                     onBlur={handleBlur}
                     error={touched.expiry_month && Boolean(errors.expiry_month)}
